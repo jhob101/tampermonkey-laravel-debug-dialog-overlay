@@ -57,7 +57,6 @@
 
 
     const moveDebugToolsToDialog = () => {
-        console.log('moving dialogs');
         if (hasWrapped) return;
 
         const phpBar = document.querySelector('.phpdebugbar');
@@ -66,7 +65,6 @@
         const phpBarIsClosed = !phpBar || phpBar.classList.contains('phpdebugbar-closed')
 
         const wireSpyIsClosed = () => {
-            console.log('in wireSPyIsClosed');
             if (!wireSpy) return true;
 
             const firstDiv = wireSpy.querySelector('div');
@@ -130,13 +128,11 @@
         for (const m of mutations) {
             for (const node of m.addedNodes) {
                 if (node.nodeType === 1 && node.tagName === 'DIALOG' && node.hasAttribute('open')) {
-                    console.log('found node with open attribute');
                     moveDebugToolsToDialog();
                 }
             }
 
             if (m.type === 'attributes' && m.target.tagName === 'DIALOG' && m.target.hasAttribute('open')) {
-                console.log('found node with open attribute 2');
                 moveDebugToolsToDialog();
             }
         }
