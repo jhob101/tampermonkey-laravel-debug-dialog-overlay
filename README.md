@@ -20,6 +20,13 @@ A Tampermonkey userscript that moves the Laravel Debugbar and WireSpy panels int
 - When you open your Laravel app (on localhost), the Debugbar and WireSpy panels will appear over other opened dialogs.
 - Use the × button in the top-left of the overlay to close it. It will reappear if new dialogs are opened.
 
+## Bonus Bookmarklet
+Add this bookmarklet to your bookmarks to toggle any dialog overlays:
+
+```
+javascript:(function(){  const dlg = document.getElementById('debug-overlay-dialog');  if (!dlg) {    alert('Debug overlay dialog not found.');    return;  }  if (typeof dlg.open === 'boolean' && dlg.open) {    dlg.close();  } else {    dlg.showModal();  }})();
+```
+
 ## Customization
 
 - To change the sites where the script runs, edit the `@match` line in the userscript header.
