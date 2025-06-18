@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Laravel Debugbar Overlay in Dialog
 // @namespace    DC_Laravel_Debugbar_Overlay
-// @version      0.3
-// @description  Move Laravel Debugbar and WireSpy into a dialog so they appear above other dialogs
+// @version      0.4
+// @description  Move Laravel Debugbar, WireSpy and Devtools for Livewire into a dialog so they appear above other dialogs
 // @author       John Hobson
 // @match        http://localhost:*/*
 // @grant        none
@@ -61,6 +61,7 @@
 
         const phpBar = document.querySelector('.phpdebugbar');
         const wireSpy = document.querySelector('.wire-spy');
+        const devtoolsForLw = document.querySelector('devtools-for-livewire');
 
         const phpBarIsClosed = !phpBar || phpBar.classList.contains('phpdebugbar-closed')
 
@@ -76,7 +77,9 @@
             return true;
         }
 
-        if (phpBarIsClosed && wireSpyIsClosed()) return;
+        const devtoolsForLwIsClosed = !devtoolsForLw || devtoolsForLw.classList.contains('closed');
+
+        if (phpBarIsClosed && wireSpyIsClosed() && devtoolsForLwIsClosed) return;
 
         const dialog = ensureDebugDialog();
 
@@ -87,6 +90,12 @@
         }
 
         if (wireSpy && !dialog.contains(wireSpy)) dialog.appendChild(wireSpy);
+
+        if (devtoolsForLw
+            && !dialog.contains(devtoolsForLw)
+            && !devtoolsForLwIsClosed) {
+            dialog.appendChild(devtoolsForLw);
+        }
 
         dialog.appendChild(closeBtn);
 
@@ -99,9 +108,11 @@
     const restoreDebugToolsToBody = () => {
         const phpBar = document.querySelector('.phpdebugbar');
         const wireSpy = document.querySelector('.wire-spy');
+        const devtoolsForLw = document.querySelector('devtools-for-livewire');
 
         if (phpBar) document.body.appendChild(phpBar);
         if (wireSpy) document.body.appendChild(wireSpy);
+        if (devtoolsForLw) document.body.appendChild(devtoolsForLw);
 
         if (debugDialog && debugDialog.open) {
             debugDialog.close();
