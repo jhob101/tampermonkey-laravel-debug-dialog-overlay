@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Laravel Debugbar Overlay in Dialog
 // @namespace    DC_Laravel_Debugbar_Overlay
-// @version      0.4
-// @description  Move Laravel Debugbar and WireSpy into a dialog so they appear above other dialogs
+// @version      0.5
+// @description  Move Laravel Debugbar, Devtools for Livewire and WireSpy into a dialog so they appear above other dialogs
 // @author       John Hobson
 // @match        http://localhost:*/*
 // @grant        none
