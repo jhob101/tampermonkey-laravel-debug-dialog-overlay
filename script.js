@@ -2,7 +2,7 @@
 // @name         Laravel Debugbar Overlay in Dialog
 // @namespace    DC_Laravel_Debugbar_Overlay
 // @version      0.4
-// @description  Move Laravel Debugbar, WireSpy and Devtools for Livewire into a dialog so they appear above other dialogs
+// @description  Move Laravel Debugbar and WireSpy into a dialog so they appear above other dialogs
 // @author       John Hobson
 // @match        http://localhost:*/*
 // @grant        none
@@ -25,9 +25,10 @@
         debugDialog.style.width = '100vw';
         debugDialog.style.height = 'auto';
         debugDialog.style.zIndex = '2147483647'; // Max z-index
-        debugDialog.style.background = 'transparent';
+        debugDialog.style.background = 'rgba(0, 166, 244, 0.1)';
         debugDialog.style.border = 'none';
         debugDialog.style.padding = '0';
+        debugDialog.style.margin = '0';
         debugDialog.setAttribute('wire:ignore', '');
 
         document.body.appendChild(debugDialog);
@@ -44,7 +45,7 @@
     closeBtn.style.zIndex = '2147483648'; // Higher than dialog content
     closeBtn.style.fontSize = '20px';
     closeBtn.style.border = 'none';
-    closeBtn.style.background = 'rgba(0, 0, 0, 0.5)';
+    closeBtn.style.background = 'rgba(0, 166, 244, 0.5)';
     closeBtn.style.color = '#fff';
     closeBtn.style.padding = '2px 8px';
     closeBtn.style.borderRadius = '4px';
